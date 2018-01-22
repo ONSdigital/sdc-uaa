@@ -27,11 +27,9 @@ applications:
           maxidle: 2
           minidle: 1
       login:
-        serviceProviderKey: |
-          PRIVATE_KEY
+        serviceProviderKey: PRIVATE_KEY
         serviceProviderKeyPassword: PRIVATE_KEY_PASSWORD
-        serviceProviderCertificate: |
-          CERTIFICATE
+        serviceProviderCertificate: CERTIFICATE
       jwt:
         token:
           signing-key: tokenKey
