@@ -31,7 +31,7 @@ applications:
           PRIVATE_KEY
         serviceProviderKeyPassword: PRIVATE_KEY_PASSWORD
         serviceProviderCertificate: |
-          PUBLIC_KEY_PASSWORD
+          CERTIFICATE
       jwt:
         token:
           signing-key: tokenKey
