@@ -1,12 +1,12 @@
 #Deploy UAA Server as Cloud Foundry Service
 ---
 applications:
-- name: uaa-sdx
+- name: uaa-SPACE
   memory: 1024M
   instances: 1
   random-route: false
   path: ./target/libs/cloudfoundry-identity-uaa-4.8.3.war
-  host: uaa-sdx
+  host: uaa-SPACE
   id: admin
   secret: adminsecret
   authorized-grant-types: client_credentials
