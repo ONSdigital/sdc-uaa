@@ -16,6 +16,7 @@ applications:
     UAA_URL: http://uaa-SPACE.apps.devtest.onsclofo.uk
     LOGIN_URL: http://uaa-SPACE.apps.devtest.onsclofo.uk
     JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    LOGIN_SECRET: LOGIN_PASSWORD
     UAA_CONFIG_YAML: |
       spring_profiles: default,postgresql
       database:
@@ -40,4 +41,3 @@ applications:
           hostnames:
            - myuaa.bosh-lite.com
 
-      LOGIN_SECRET: LOGIN_PASSWORD
