@@ -21,6 +21,7 @@ sed -i -- "s|DB_URL|${DB_URI}|g" uaa-cf-application.yml
 sed -i -- "s/DB_USERNAME/${DB_USERNAME}/g" uaa-cf-application.yml
 sed -i -- "s/DB_PASSWORD/${DB_PASSWORD}/g" uaa-cf-application.yml
 sed -i -- "s|PRIVATE_KEY_PASSWORD|${UAA_PRIVATE_KEY_PASSWORD}|g" uaa-cf-application.yml
+sed -i -- "s|LOGIN_PASSWORD|$LOGIN_PASSWORD|g" uaa-cf-application.yml
 
 echo "$UAA_PRIVATE_KEY" > private_key
 echo "$UAA_CERTIFICATE" > certificate
