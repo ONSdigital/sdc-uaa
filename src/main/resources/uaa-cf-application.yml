@@ -39,3 +39,5 @@ applications:
         internal:
           hostnames:
            - myuaa.bosh-lite.com
+
+      LOGIN_SECRET: LOGIN_PASSWORD
