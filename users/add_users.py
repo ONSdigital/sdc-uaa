@@ -21,10 +21,6 @@ def login_client(client_id, client_secret, url):
 def create_user(access_token, username, password, email, first_name, last_name, url):
     user = {
         "externalId": f"{username}",
-        "meta": {
-            "version": 0,
-            "created": "2017-10-10T21:15:46.464Z"
-        },
         "userName": f"{password}",
         "name": {
             "formatted": f"{first_name} {last_name}",
