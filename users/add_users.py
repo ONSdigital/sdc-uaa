@@ -1,5 +1,6 @@
 import argparse
 import json
+
 import requests
 
 
@@ -46,6 +47,7 @@ def create_user(access_token, username, password, email, first_name, last_name, 
                              headers=headers)
     print(response.status_code)
     print(response.json())
+
 
 parser = argparse.ArgumentParser(description="Add user to UAA")
 parser.add_argument("-ci", "--client_id", required=True, dest="client_id", help="The client id for the organization")
