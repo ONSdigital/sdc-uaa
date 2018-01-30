@@ -1,6 +1,6 @@
-import requests
-import json
 import argparse
+import json
+import requests
 
 
 def login_client(client_id, client_secret, url):
@@ -20,7 +20,6 @@ def login_client(client_id, client_secret, url):
 
 def create_user(access_token, username, password, email, first_name, last_name, url):
     user = {
-        "externalId": f"{username}",
         "userName": f"{username}",
         "name": {
             "formatted": f"{first_name} {last_name}",
@@ -36,9 +35,7 @@ def create_user(access_token, username, password, email, first_name, last_name, 
         }],
         "active": True,
         "verified": True,
-        "origin": "",
         "password": f"{password}",
-        "schemas": ["urn:scim:schemas:core:1.0"]
     }
 
     headers = {'Content-Type': 'application/json',
@@ -49,7 +46,6 @@ def create_user(access_token, username, password, email, first_name, last_name, 
                              headers=headers)
     print(response.status_code)
     print(response.json())
-
 
 parser = argparse.ArgumentParser(description="Add user to UAA")
 parser.add_argument("-ci", "--client_id", required=True, dest="client_id", help="The client id for the organization")
