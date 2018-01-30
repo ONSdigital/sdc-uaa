@@ -14,7 +14,7 @@ def login_client(client_id, client_secret, url):
                              auth=(client_id, client_secret))
     resp_json = response.json()
     access_token = resp_json.get('access_token')
-    print(f"Access code{access_token}")
+    print(f"Access code {access_token}")
     return access_token
 
 
