@@ -26,6 +26,11 @@ sed -i -- "s|UAA_SECRET|$UAA_SECRET|g" uaa-cf-application.yml
 
 echo "$UAA_PRIVATE_KEY" > private_key
 echo "$UAA_CERTIFICATE" > certificate
+echo "$UAA_JWT_SIGNING_KEY" > jwt_signing_key
+echo "$UAA_JWT_VERIFICATION_KEY" > jwt_verification_key
+
 
 sed -e '/PRIVATE_KEY/ {' -e 'r private_key' -e 'd' -e '}' -i uaa-cf-application.yml
 sed -e '/CERTIFICATE/ {' -e 'r certificate' -e 'd' -e '}' -i uaa-cf-application.yml
+sed -e '/SIGNING_KEY/ {' -e 'r jwt_signing_key' -e 'd' -e '}' -i uaa-cf-application.yml
+sed -e '/VERIFICATION_KEY/ {' -e 'r jwt_verification_key' -e 'd' -e '}' -i uaa-cf-application.yml

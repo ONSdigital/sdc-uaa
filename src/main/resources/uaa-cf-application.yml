@@ -33,8 +33,10 @@ applications:
         serviceProviderCertificate: |
           CERTIFICATE
       jwt:
-        token:
-          signing-key: tokenKey
+        signing-key: |
+            JWT_SIGNING_KEY
+      verification-key: |
+            JWT_VERIFICATION_KEY
       zones:
         internal:
           hostnames:
