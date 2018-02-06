@@ -34,9 +34,11 @@ applications:
           CERTIFICATE
       jwt:
         token:
-          signing-key: tokenKey
+          signing-key: |
+            JWT_SIGNING_KEY
+          verification-key: |
+            JWT_VERIFICATION_KEY
       zones:
-        internal:
-          hostnames:
-           - myuaa.bosh-lite.com
-
+         internal:
+           hostnames:
+             - uaa-SPACE.apps.devtest.onsclofo.uk
