@@ -34,11 +34,6 @@ applications:
           CERTIFICATE
       jwt:
         signing-key: |
-            JWT_SIGNING_KEY
+          JWT_SIGNING_KEY
         verification-key: |
-            JWT_VERIFICATION_KEY
-      zones:
-        internal:
-          hostnames:
-           - myuaa.bosh-lite.com
-
+          JWT_VERIFICATION_KEY
