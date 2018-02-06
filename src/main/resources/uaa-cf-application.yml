@@ -35,7 +35,7 @@ applications:
       jwt:
         signing-key: |
             JWT_SIGNING_KEY
-      verification-key: |
+        verification-key: |
             JWT_VERIFICATION_KEY
       zones:
         internal:
