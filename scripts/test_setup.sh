@@ -12,7 +12,7 @@ pipenv run python create_group.py -ci login -cs loginsecret -url uaa-int.apps.de
 pipenv run python create_group.py -ci login -cs loginsecret -url uaa-int.apps.devtest.onsclofo.uk -g 074 -d blocks -v
 
 # Create Users
-pipenv run python add_users.py -ci login -cs loginsecret -url uaa-int.apps.devtest.onsclofo.uk -u jimmy -p password -e jimmy.mcgill@ons.gov.uk -f jimmy -l Bailey -v
+pipenv run python add_users.py -ci login -cs loginsecret -url uaa-int.apps.devtest.onsclofo.uk -u jimmy -p password -e jimmy.mcgill@ons.gov.uk -f jimmy -l mcgill -v
 
 # Query User
 pipenv run python query_users.py -ci admin -cs adminsecret -url uaa-int.apps.devtest.onsclofo.uk -u jimmy -p password -v
