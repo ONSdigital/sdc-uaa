@@ -7,7 +7,8 @@ COPY target/lib/cloudfoundry-identity-uaa-4.8.3.war .
 RUN unzip -d /usr/local/tomcat/webapps/cloudfoundry-identity-uaa-4.8.3 cloudfoundry-identity-uaa-4.8.3.war
 RUN rm cloudfoundry-identity-uaa-4.8.3.war
 
-COPY tomcat/saml-idp.xml /usr/local/tomcat/webapps/cloudfoundry-identity-uaa-4.8.3/WEB-INF/spring
+COPY tomcat/uaa.yml /usr/local/tomcat/uaa.yml
+COPY tomcat/saml-idp.xml /usr/local/tomcat/webapps/cloudfoundry-identity-uaa-4.8.3/WEB-INF/spring/
 
 EXPOSE 8080
 
