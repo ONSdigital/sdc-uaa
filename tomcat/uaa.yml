@@ -1,8 +1,0 @@
-oauth:
-  clients:
-    myuaa:
-      id: admin
-      secret: adminsecret
-      authorized-grant-types: client_credentials
-      scope: none
-      authorities: uaa.admin,clients.read,clients.write,clients.secret
