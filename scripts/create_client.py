@@ -14,7 +14,7 @@ def login_admin(admin_id, admin_secret, url, verbose):
     payload = {'grant_type': 'client_credentials',
                'response_type': 'token',
                'token_format': 'opaque'}
-    response = requests.post('http://{}/oauth/token'.format(url), headers=headers,
+    response = requests.post(f'http://{url}/oauth/token', headers=headers,
                              params=payload,
                              auth=(admin_id, admin_secret))
     resp_json = response.json()
@@ -22,24 +22,24 @@ def login_admin(admin_id, admin_secret, url, verbose):
         pprint.pprint(resp_json)
     access_token = resp_json.get('access_token')
     if verbose:
-        print("Access code{}".format(access_token))
+        print(f"Access code{access_token}")
     return access_token
 
 
 def create_client(access_token, client, client_secret, scope, url, verbose):
     client = {
-        "client_id": client,
-        "client_secret": client_secret,
+        "client_id": f"{client}",
+        "client_secret": f"{client_secret}",
         "authorized_grant_types": ["client_credentials", "password"],
-        "scope": scope,
+        "scope": f"{scope}",
         "redirect_uri": ["http://ons.gov.uk", "http://ons.gov.uk/**/passback/*"],
     }
 
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': 'Bearer {}'.format(access_token)}
+               'Authorization': f'Bearer {access_token}'}
 
-    response = requests.post('http://{}/oauth/clients'.format(url), data=json.dumps(client),
+    response = requests.post(f'http://{url}/oauth/clients', data=json.dumps(client),
                              headers=headers)
     if verbose:
         print(response.status_code)
