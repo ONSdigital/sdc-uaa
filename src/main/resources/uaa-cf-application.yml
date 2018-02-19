@@ -13,8 +13,8 @@ applications:
   scope: none
   authorities: uaa.admin,clients.read,clients.write,clients.secret
   env:
-    UAA_URL: http://uaa-SPACE.apps.devtest.onsclofo.uk
-    LOGIN_URL: http://uaa-SPACE.apps.devtest.onsclofo.uk
+    UAA_URL: UAA-URL
+    LOGIN_URL: LOGIN-URL
     JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
     UAA_CONFIG_YAML: |
       spring_profiles: default,postgresql
@@ -41,4 +41,4 @@ applications:
       zones:
          internal:
            hostnames:
-             - uaa-SPACE.apps.devtest.onsclofo.uk
+             - ZONE-URL
