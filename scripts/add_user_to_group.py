@@ -13,7 +13,7 @@ def login_client(client_id, client_secret, url, verbose):
     payload = {'grant_type': 'client_credentials',
                'response_type': 'token',
                'token_format': 'opaque'}
-    response = requests.post(f'http://{url}/oauth/token', headers=headers,
+    response = requests.post('http://{}/oauth/token'.format(url), headers=headers,
                              params=payload,
                              auth=(client_id, client_secret))
     resp_json = response.json()
@@ -27,7 +27,7 @@ def login_client(client_id, client_secret, url, verbose):
 def query_group(access_token, group, url, verbose):
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+               'Authorization': 'Bearer {}'.format(access_token)}
 
     response = requests.get(f'http://{url}/Groups?filter=displayName+eq+%22{group}%22', headers=headers)
     if verbose:
@@ -44,9 +44,9 @@ def query_group(access_token, group, url, verbose):
 def query_user(access_token, username, url, verbose):
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+               'Authorization': 'Bearer {}'.format(access_token)}
 
-    response = requests.get(f'http://{url}/Users?filter=userName+eq+%22{username}%22', headers=headers)
+    response = requests.get('http://{0}/Users?filter=userName+eq+%22{1}%22'.format(url, username), headers=headers)
 
     if verbose:
         print(response.status_code)
@@ -62,13 +62,13 @@ def query_user(access_token, username, url, verbose):
 def add_user_to_group(access_token, user_id, group_id, url, verbose):
     user = {"origin": "uaa",
             "type": "USER",
-            "value": f"{user_id}"}
+            "value": user_id}
 
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+               'Authorization': 'Bearer {}'.format(access_token)}
 
-    response = requests.post(f'http://{url}/Groups/{group_id}/members', data=json.dumps(user),
+    response = requests.post('http://{0}/Groups/{1}/members'.format(url, group_id), data=json.dumps(user),
                              headers=headers)
     if verbose:
         print(response.status_code)

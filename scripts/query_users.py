@@ -11,7 +11,7 @@ def login_client_and_user(client_id, client_secret, username, password, url, ver
                'response_type': 'token',
                'token_format': 'opaque'}
     response = requests.post(
-        f'http://{url}/oauth/token?username={username}&password={password}&token_format=opaque&response_type=token',
+        'http://{0}/oauth/token?username={1}&password={2}&token_format=opaque&response_type=token'.format(url, username, password),
         headers=headers,
         params=payload,
         auth=(client_id, client_secret))
@@ -20,7 +20,7 @@ def login_client_and_user(client_id, client_secret, username, password, url, ver
         pprint.pprint(resp_json)
     access_token = resp_json.get('access_token')
     if verbose:
-        print(f"Access code {access_token}")
+        print("Access code {}".format(access_token))
     return access_token
 
 
@@ -29,7 +29,7 @@ def query_user(access_token, username, url, verbose):
                'Accept': 'application/json',
                'Authorization': f'Bearer {access_token}'}
 
-    response = requests.get(f'http://{url}/Users?filter=userName+eq+%22{username}%22', headers=headers)
+    response = requests.get('http://{0}/Users?filter=userName+eq+%22{1}%22'.format(url, username), headers=headers)
     if verbose:
         print(response.status_code)
         pprint.pprint(response.json())

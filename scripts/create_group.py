@@ -13,7 +13,7 @@ def login_client(client_id, client_secret, url, verbose):
     payload = {'grant_type': 'client_credentials',
                'response_type': 'token',
                'token_format': 'opaque'}
-    response = requests.post(f'http://{url}/oauth/token', headers=headers,
+    response = requests.post('http://{}/oauth/token'.format(url), headers=headers,
                              params=payload,
                              auth=(client_id, client_secret))
     resp_json = response.json()
@@ -21,19 +21,19 @@ def login_client(client_id, client_secret, url, verbose):
         pprint.pprint(resp_json)
     access_token = resp_json.get('access_token')
     if verbose:
-        print(f"Access code {access_token}")
+        print("Access code {}".format(access_token))
     return access_token
 
 
 def create_group(access_token, group_name, description, url, verbose):
     group = {
-        "displayName": f"{group_name}",
-        "description": f"{description}",
+        "displayName": group_name,
+        "description": description,
     }
 
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+               'Authorization': 'Bearer {}'.format(access_token)}
 
     response = requests.post(f'http://{url}/Groups', data=json.dumps(group),
                              headers=headers)
