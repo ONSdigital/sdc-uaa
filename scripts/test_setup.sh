@@ -5,6 +5,9 @@
 # Create a client for RAS backstage
 pipenv run python create_client.py -a admin -s adminsecret -url uaa-int.apps.devtest.onsclofo.uk -c ras_backstage -p password -sc scim.me,scim.userids,073,074,user_attributes,profile -v
 
+# Create a client for Secure Message
+pipenv run python create_client.py -a admin -s adminsecret -url uaa-int.apps.devtest.onsclofo.uk -c secure_message -p password -sc scim.me,scim.userids,073,074,user_attributes,profile -v
+
 # Create Bricks groups
 pipenv run python create_group.py -ci login -cs loginsecret -url uaa-int.apps.devtest.onsclofo.uk -g 073 -d bricks -v
 
