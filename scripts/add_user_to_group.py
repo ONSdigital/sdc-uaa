@@ -29,7 +29,7 @@ def query_group(access_token, group, url, verbose):
                'Accept': 'application/json',
                'Authorization': 'Bearer {}'.format(access_token)}
 
-    response = requests.get(f'http://{url}/Groups?filter=displayName+eq+%22{group}%22', headers=headers)
+    response = requests.get('http://{0}/Groups?filter=displayName+eq+%22{1}%22'.format(url, group), headers=headers)
     if verbose:
         print(response.status_code)
 
