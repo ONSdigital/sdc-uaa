@@ -22,7 +22,7 @@ def login_client(client_id, client_secret, url, verbose):
 
     access_token = resp_json.get('access_token')
     if verbose:
-        print(f"Access code {access_token}")
+        print("Access code {}".format(access_token))
 
     return access_token
 
@@ -31,7 +31,7 @@ def create_user(access_token, username, password, email, first_name, last_name, 
     user = {
         "userName": "{}".format(username),
         "name": {
-            "formatted": "{0} {1}".format(firstname, last_name),
+            "formatted": "{0} {1}".format(first_name, last_name),
             "familyName": first_name,
             "givenName": last_name
         },

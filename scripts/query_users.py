@@ -27,7 +27,7 @@ def login_client_and_user(client_id, client_secret, username, password, url, ver
 def query_user(access_token, username, url, verbose):
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+               'Authorization': 'Bearer {}'.format(access_token)}
 
     response = requests.get('http://{0}/Users?filter=userName+eq+%22{1}%22'.format(url, username), headers=headers)
     if verbose:
