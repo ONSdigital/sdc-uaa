@@ -35,7 +35,7 @@ def create_group(access_token, group_name, description, url, verbose):
                'Accept': 'application/json',
                'Authorization': 'Bearer {}'.format(access_token)}
 
-    response = requests.post(f'http://{url}/Groups', data=json.dumps(group),
+    response = requests.post('http://{}/Groups'.format(url), data=json.dumps(group),
                              headers=headers)
     if verbose:
         print(response.status_code)
