@@ -20,7 +20,7 @@ def login_client(client_id, client_secret, url, verbose):
     pprint.pprint(resp_json)
     access_token = resp_json.get('access_token')
     if verbose:
-        print(f"Access code {access_token}")
+        print("Access code {}".format(access_token))
     return access_token
 
 
