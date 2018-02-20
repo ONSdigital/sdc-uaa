@@ -2,8 +2,5 @@
 
 pipenv install requests
 
-# Create Bricks groups
-pipenv run python create_group.py -ci login -cs loginsecret -url uaa-$SPACE.apps.devtest.onsclofo.uk -g surveys.073 -d bricks -v
+pipenv run python ./scripts/create_group.py -ci login -cs loginsecret -url uaa-$SPACE.apps.devtest.onsclofo.uk -g surveys.$GROUP_ID -d $GROUP_NAME -v
 
-# Create Block groups
-pipenv run python create_group.py -ci login -cs loginsecret -url uaa-$SPACE.apps.devtest.onsclofo.uk -g surveys.074 -d blocks -v
