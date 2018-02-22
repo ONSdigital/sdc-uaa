@@ -27,6 +27,7 @@ sed -i -- "s|UAA-URL|$UAA_URL|g" uaa-cf-application.yml
 sed -i -- "s|LOGIN-URL|$LOGIN_URL|g" uaa-cf-application.yml
 sed -i -- "s|ZONE-URL|$ZONE_URL|g" uaa-cf-application.yml
 
+
 echo "$UAA_PRIVATE_KEY" > private_key
 echo "$UAA_CERTIFICATE" > certificate
 echo "$UAA_JWT_SIGNING_KEY" > jwt_signing_key
