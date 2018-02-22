@@ -5,7 +5,7 @@
 
 cp src/main/resources/uaa-cf-application.yml .
 
-cf login --skip-ssl-validation -u $JENKINS_CF_USERNAME -p $JENKINS_CF_PASSWORD -a $API_ENDPOINT -o $ORG -s $SPACE
+cf login --skip-ssl-validation -u $CF_USER_USR -p $CF_USER_PSW -a $CLOUDFOUNDRY_API -o $ORG -s $SPACE
 cf create-service rds shared-psql postgres-uaa-$SPACE
 cf create-service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key
 cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key
