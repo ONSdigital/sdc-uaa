@@ -13,7 +13,7 @@ def login_client(client_id, client_secret, url, verbose):
     payload = {'grant_type': 'client_credentials',
                'response_type': 'token',
                'token_format': 'opaque'}
-    response = requests.post(f'http://{url}/oauth/token', headers=headers,
+    response = requests.post('http://{}/oauth/token'.format(url), headers=headers,
                              params=payload,
                              auth=(client_id, client_secret))
     resp_json = response.json()
@@ -22,33 +22,33 @@ def login_client(client_id, client_secret, url, verbose):
 
     access_token = resp_json.get('access_token')
     if verbose:
-        print(f"Access code {access_token}")
+        print("Access code {}".format(access_token))
 
     return access_token
 
 
 def create_user(access_token, username, password, email, first_name, last_name, url, verbose):
     user = {
-        "userName": f"{username}",
+        "userName": "{}".format(username),
         "name": {
-            "formatted": f"{first_name} {last_name}",
-            "familyName": f"{first_name}",
-            "givenName": f"{last_name}"
+            "formatted": "{0} {1}".format(first_name, last_name),
+            "familyName": first_name,
+            "givenName": last_name
         },
         "emails": [{
-            "value": f"{email}",
+            "value": email,
             "primary": True
         }],
         "active": True,
         "verified": True,
-        "password": f"{password}"
+        "password": password
     }
 
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {access_token}'}
+               'Authorization': 'Bearer {}'.format(access_token)}
 
-    response = requests.post(f'http://{url}/Users', data=json.dumps(user),
+    response = requests.post('http://{}/Users'.format(url), data=json.dumps(user),
                              headers=headers)
     if verbose:
         print(response.status_code)
