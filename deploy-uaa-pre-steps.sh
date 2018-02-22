@@ -5,16 +5,20 @@
 
 cp src/main/resources/uaa-cf-application.yml .
 
-cf login --skip-ssl-validation -u $JENKINS_CF_USERNAME -p $JENKINS_CF_PASSWORD -a $API_ENDPOINT -o $ORG -s $SPACE
-cf create-service rds shared-psql postgres-uaa-$SPACE
-cf create-service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key
-cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key
+#Create DB and resolve connection details if in dev mode.  In prod/preprod, these will come directly from Jenkins
+if [ ${#} -eq 1 ] && [ $1 = 'dev' ]
+then
+    cf login --skip-ssl-validation -u $JENKINS_CF_USERNAME -p $JENKINS_CF_PASSWORD -a $API_ENDPOINT -o $ORG -s $SPACE
+    cf create-service rds shared-psql postgres-uaa-$SPACE
+    cf create-service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key
+    cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key
 
-export DB_HOST=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"host": "\(.*\)",/\1/p')
-export DB_NAME=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"db_name": "\(.*\)",/\1/p')
-export DB_USERNAME=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"username": "\(.*\)"/\1/p')
-export DB_PASSWORD=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"password": "\(.*\)",/\1/p')
-export DB_URI="jdbc:postgresql://"$DB_HOST":5432/"$DB_NAME
+    export DB_HOST=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"host": "\(.*\)",/\1/p')
+    export DB_NAME=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"db_name": "\(.*\)",/\1/p')
+    export DB_USERNAME=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"username": "\(.*\)"/\1/p')
+    export DB_PASSWORD=$(cf service-key postgres-uaa-$SPACE postgres-uaa-$SPACE-key | sed -n 's/.*"password": "\(.*\)",/\1/p')
+    export DB_URI="jdbc:postgresql://"$DB_HOST":5432/"$DB_NAME
+fi
 
 sed -i -- "s/SPACE/$SPACE/g" uaa-cf-application.yml
 sed -i -- "s|DB_URL|${DB_URI}|g" uaa-cf-application.yml
