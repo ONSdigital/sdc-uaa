@@ -12,6 +12,20 @@ applications:
   authorized-grant-types: client_credentials
   scope: none
   authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
+  oauth:
+    clients:
+      login:
+        id: login
+        secret: logintest
+        authorized-grant-types: client_credentials
+        authorities: ROLE_LOGIN
+        resource-ids: oauth
+      admin:
+        id: admin
+        secret: beer
+        authorized-grant-types: client_credentials
+        scope: none
+        authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
   env:
     UAA_URL: UAA-URL
     LOGIN_URL: LOGIN-URL
