@@ -7,11 +7,11 @@ applications:
   random-route: false
   path: ./target/lib/cloudfoundry-identity-uaa-4.8.3.war
   host: uaa-SPACE
-  id: UAA_ID
-  secret: UAA_SECRET
+  id: admin
+  secret: beer
   authorized-grant-types: client_credentials
   scope: none
-  authorities: uaa.admin,clients.read,clients.write,clients.secret
+  authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
   env:
     UAA_URL: UAA-URL
     LOGIN_URL: LOGIN-URL
