@@ -27,12 +27,12 @@ applications:
               scope: none
               authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
               override: false
-          login:
-            id: login
-            secret: logintest
-            authorized-grant-types: client_credentials
-            authorities: ROLE_LOGIN
-            resource-ids: oauth
+            login:
+              id: login
+              secret: logintest
+              authorized-grant-types: client_credentials
+              authorities: ROLE_LOGIN
+              resource-ids: oauth
       database:
           driverClassName: org.postgresql.Driver
           url: DB_URL
