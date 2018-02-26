@@ -20,7 +20,7 @@ applications:
       spring_profiles: postgresql
       oauth:
         client:
-          override: true
+          override: false
 
         clients:
             admin:
