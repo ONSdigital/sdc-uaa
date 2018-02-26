@@ -22,7 +22,7 @@ applications:
         clients:
             admin:
               id: admin
-              client_secret: beer
+              secret: beer
               authorized-grant-types: client_credentials
               scope: none
               authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
