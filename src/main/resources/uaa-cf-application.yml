@@ -19,7 +19,7 @@ applications:
     UAA_CONFIG_YAML: |
       spring_profiles: default,postgresql
       oauth:
-        clients:
+        client:
             admin:
               id: admin
               secret: beer
