@@ -25,13 +25,13 @@ applications:
         clients:
             admin:
               id: admin
-              secret: beer
+              secret: ADMIN_SECRET
               authorized-grant-types: client_credentials
               scope: none
               authorities: uaa.admin,clients.read,clients.write,clients.secret, scim.write, scim.read
             login:
               id: login
-              secret: logintest
+              secret: LOGIN_SECRET
               authorized-grant-types: client_credentials
               authorities: ROLE_LOGIN
               resource-ids: oauth
