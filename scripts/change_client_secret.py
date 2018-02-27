@@ -22,21 +22,21 @@ def login_admin(admin_id, admin_secret, url, verbose):
         pprint.pprint(resp_json)
     access_token = resp_json.get('access_token')
     if verbose:
-        print("Access code{}".format(access_token))
+        print("Access code: {}".format(access_token))
     return access_token
 
 
 def change_secret(access_token, client_id, client_secret, url, verbose):
     client = {
-        "client_id": client_id,
-        "client_secret": client_secret,
+        "clientId": client_id,
+        "secret": client_secret,
     }
 
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
                'Authorization': 'Bearer {}'.format(access_token)}
 
-    response = requests.post('http://{0}/oauth/clients/{1}/secret'.format(url, client_id), data=json.dumps(client),
+    response = requests.put('http://{0}/oauth/clients/{1}/secret'.format(url, client_id), data=json.dumps(client),
                              headers=headers)
     if verbose:
         print(response.status_code)
