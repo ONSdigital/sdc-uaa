@@ -30,6 +30,8 @@ sed -i -- "s|UAA_SECRET|$UAA_SECRET|g" uaa-cf-application.yml
 sed -i -- "s|UAA-URL|$UAA_URL|g" uaa-cf-application.yml
 sed -i -- "s|LOGIN-URL|$LOGIN_URL|g" uaa-cf-application.yml
 sed -i -- "s|ZONE-URL|$ZONE_URL|g" uaa-cf-application.yml
+sed -i -- "s/ADMIN_SECRET/$ADMIN_SECRET/g" uaa-cf-application.yml
+sed -i -- "s/LOGIN_SECRET/$LOGIN_SECRET/g" uaa-cf-application.yml
 
 echo "$UAA_PRIVATE_KEY" > private_key
 echo "$UAA_CERTIFICATE" > certificate
