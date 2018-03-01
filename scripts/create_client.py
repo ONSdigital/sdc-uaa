@@ -26,13 +26,14 @@ def login_admin(admin_id, admin_secret, url, verbose):
     return access_token
 
 
-def create_client(access_token, client, client_secret, scope, url, verbose):
+def create_client(access_token, client, client_secret, scope, url, authorities, verbose):
     client = {
         "client_id": client,
         "client_secret": client_secret,
         "authorized_grant_types": ["client_credentials", "password"],
         "scope": scope,
         "redirect_uri": ["http://ons.gov.uk", "http://ons.gov.uk/**/passback/*"],
+        "authorities": authorities,
     }
 
     headers = {'Content-Type': 'application/json',
@@ -56,6 +57,7 @@ if __name__ == '__main__':
     parser.add_argument("-c", "--client", required=True, dest="client", help="The client id")
     parser.add_argument("-p", "--client_password", required=True, dest="password", help="The client password")
     parser.add_argument("-sc", "--scope", required=True, dest="scope", help="The client scopes")
+    parser.add_argument("-ca", "--authorities", required=True, dest="authorities", help="The client authorities")
     parser.add_argument("-v", "--verbose", default=False, required=False, dest="verbose",
                         help="To enable verbose output", action="store_true")
 
@@ -63,4 +65,4 @@ if __name__ == '__main__':
 
     token = login_admin(args.admin_id, args.admin_secret, args.url, verbose=args.verbose)
     create_client(access_token=token, client=args.client, client_secret=args.password, url=args.url, scope=args.scope,
-                  verbose=args.verbose)
+                  authorities=args.authorities, verbose=args.verbose)
