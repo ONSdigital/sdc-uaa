@@ -5,7 +5,7 @@ applications:
   memory: 1024M
   instances: 1
   random-route: false
-  path: ./target/lib/cloudfoundry-identity-uaa-4.8.3.war
+  path: ./target/lib/cloudfoundry-identity-uaa-4.10.0.war
   host: uaa-SPACE
   id: UAA_ID
   secret: UAA_SECRET
