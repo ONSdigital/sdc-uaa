@@ -32,8 +32,8 @@ def create_user(access_token, username, password, email, first_name, last_name, 
         "userName": "{}".format(username),
         "name": {
             "formatted": "{0} {1}".format(first_name, last_name),
-            "familyName": first_name,
-            "givenName": last_name
+            "givenName": first_name,
+            "familyName": last_name
         },
         "emails": [{
             "value": email,
