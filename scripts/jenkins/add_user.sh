@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pipenv run pip install pip==18.0
 pipenv install requests
 
 # Create Users
