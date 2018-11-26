@@ -16,6 +16,8 @@ def login_client(client_id, client_secret, url, verbose):
     response = requests.post('http://{}/oauth/token'.format(url), headers=headers,
                              params=payload,
                              auth=(client_id, client_secret))
+
+    response.raise_for_status()
     resp_json = response.json()
     if verbose:
         pprint.pprint(resp_json)
