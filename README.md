@@ -10,7 +10,9 @@ docker run -p 8080:8080 -e CATALINA_OPTS="-Dspring.profiles.active=default,hsqld
 
 # sdc-uaa endpoints
 
-This page documents the sdc-uaa endpoints that can be hit.
+There are a number of helper scripts to set up uaa that act as wrappers to make hitting uaa endpoints easier. For full information on the endpoints visit https://docs.cloudfoundry.org/api/uaa/
+
+Below is a brief description on what hitting each of these endpoints does.
 
 `/oauth/token`
 * POST request to this endpoint logs in a client, admin, or user.
