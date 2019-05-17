@@ -8,7 +8,7 @@ Run the container providing the spring profiles in CATALINA_OPTS
 
 docker run -p 8080:8080 -e CATALINA_OPTS="-Dspring.profiles.active=default,hsqldb" sdc-uaa
 
-# sdc-uaa endpoints
+# Helper Scripts
 
 There are a number of helper scripts to set up uaa that act as wrappers to make hitting uaa endpoints easier. For full information on the endpoints visit https://docs.cloudfoundry.org/api/uaa/
 
