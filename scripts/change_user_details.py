@@ -79,7 +79,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    # Get an admin access token
     token = login_admin(args.admin_id, args.admin_secret, args.url, verbose=args.verbose)
+
+    # Get the user ID as stored in UAA
     user_code = get_user_by_username(token=token, username=args.userid, verbose=args.verbose)
+
     update_user_details(token=token, username=args.userid, user_code=user_code, first_name=args.first_name,
                         last_name=args.last_name, email=args.email, verbose=args.verbose)
