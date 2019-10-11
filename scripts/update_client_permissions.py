@@ -13,7 +13,7 @@ def login_admin(admin_id, admin_secret, url):
     response = requests.post('http://{}/oauth/token'.format(url), headers=headers,
                              params=payload,
                              auth=(admin_id, admin_secret))
-    logger.info(f'Admin login returned {response.status_code}')
+    logger.info('Admin login returned {}'.format(response.status_code))
     if response.status_code != 200:
         exit(1)
     resp_json = response.json()
@@ -33,8 +33,8 @@ def update_info(token, url, authorities, authorized_grant_types, client_id, scop
                'scope': authorities.split(", "),
                'resource_ids': 'oauth'}
     
-    response = requests.post(f'http://{url}/oauth/clients/response_operations')
-    logger.info(f'Update scopes/authorities returned {response.status_code}')
+    response = requests.post('http://{}/oauth/clients/response_operations'.format(url))
+    logger.info('Update scopes/authorities returned {}'.format(response.status_code))
     if response.status_code != 200:
         exit(1)
 
