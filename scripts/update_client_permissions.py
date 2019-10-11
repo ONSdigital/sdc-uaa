@@ -25,7 +25,7 @@ def login_admin(admin_id, admin_secret, url):
 def update_info(token, url, authorities, authorized_grant_types, client_id, scope):
     headers = {'Content-Type': 'application/json',
                'Accept': 'application/json',
-               'Authorization': f'Bearer {token}'}
+               'Authorization': 'Bearer {}'.format(token)}
 
     payload = {'client_id': client_id,
                'authorized_grant_types': authorized_grant_types.split(", "),
