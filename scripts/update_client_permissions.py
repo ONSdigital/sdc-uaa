@@ -42,7 +42,7 @@ def update_info(token, url, authorities, authorized_grant_types, client_id, scop
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Update permissions of an oauth client")
     parser.add_argument("-a", "--admin_id", required=True, dest="admin_id", help="The admin id for the organization")
-    parser.add_argument("-s", "--admin_secret", required=True, dest="admin_secret", help="The admin password for the organization")
+    parser.add_argument("-as", "--admin_secret", required=True, dest="admin_secret", help="The admin password for the organization")
     parser.add_argument("-url", "--url", required=True, dest="url",
                         help="The UAA url to target")
     parser.add_argument("-c", "--client_id", required=True, dest="client_id", help="The client ID to update")
