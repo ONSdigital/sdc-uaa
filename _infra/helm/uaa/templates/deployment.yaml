@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Chart.Name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicas }}
   strategy:
     rollingUpdate:
       maxSurge:  {{ .Values.rollingUpdate.maxSurge }}
