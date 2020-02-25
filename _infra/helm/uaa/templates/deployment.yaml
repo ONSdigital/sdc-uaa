@@ -91,4 +91,4 @@ spec:
                     - name: CATALINA_OPTS
                       value: "-Dspring.profiles.active=postgresql"
                   resources:
-{{ toYaml .Values.resources | indent 12 }}
+                    {{ toYaml .Values.resources | indent 12 }}
