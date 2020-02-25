@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>uk.gov.ons.sdc</groupId>
-    <artifactId>sdc-uacc</artifactId>
+    <artifactId>sdc-uaa</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
