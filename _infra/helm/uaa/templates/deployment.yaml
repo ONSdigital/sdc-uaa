@@ -19,10 +19,19 @@ spec:
         app: {{ .Chart.Name }}
         env: {{ .Values.env }}
     spec:
+      volumes:
+      - name: uaa-secrets
+        secret:
+          secretName: uaa-secret
+          defaultMode: 0444
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.name }}/{{ .Chart.Name }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: uaa-secrets
+              mountPath: "/uaa"
+              readOnly: true
           ports:
             - name: http-server
               containerPort: {{ .Values.container.port }}
