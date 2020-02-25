@@ -22,10 +22,6 @@ container:
 service:
   port: 80
 
-rollingUpdate:
-  maxSurge: 1
-  maxUnavailable:
-
 resources:
   requests:
     memory: "512Mi"
