@@ -1,0 +1,21 @@
+{
+  "schema": "v2",
+  "application": "uaa",
+  "name": "uaa",
+  "template": {
+    "artifactAccount": "front50ArtifactCredentials",
+    "reference": "spinnaker://rasrmApplicationTemplate",
+    "type": "front50/pipelineTemplate"
+  },
+  "variables": {
+    "name": "uaa",
+    "defaultHelmChart": "uaa-0.1.0.tgz",
+    "helmChartMatcher": "uaa-.*\\.tgz"
+  },
+  "exclude": [],
+  "triggers": [],
+  "parameters": [],
+  "notifications": [],
+  "description": "",
+  "stages": []
+}
