@@ -1,16 +1,16 @@
 {
   "schema": "v2",
   "application": "uaa",
-  "name": "uaa",
+  "name": "deploy staging",
   "template": {
     "artifactAccount": "front50ArtifactCredentials",
-    "reference": "spinnaker://rasrmApplicationTemplate",
+    "reference": "spinnaker://individualDeploymentTemplate",
     "type": "front50/pipelineTemplate"
   },
   "variables": {
-    "name": "uaa",
-    "defaultHelmChart": "uaa-0.1.0.tgz",
-    "helmChartMatcher": "uaa-.*\\.tgz"
+    "namespace": "staging",
+    "environment": "dev",
+    "service": "uaa"
   },
   "exclude": [],
   "triggers": [],
