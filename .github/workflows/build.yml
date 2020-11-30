@@ -45,7 +45,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          mvn clean verify
+          mvn clean install
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: '270.0.0'
