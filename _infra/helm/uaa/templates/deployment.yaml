@@ -69,7 +69,7 @@ spec:
             - name: uaa-secrets
               mountPath: "/uaa"
               readOnly: true
-            - name: log4j-properties
+            - name: log4j2-properties
               mountPath: /etc/config/log4j2.properties
           ports:
             - name: http-uaa
