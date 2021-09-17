@@ -24,6 +24,9 @@ spec:
         secret:
           secretName: uaa-secret
           defaultMode: 0444
+      - name: log4j2
+        configMap:
+          name: log4j2-propeties
       {{- if .Values.database.sqlProxyEnabled }}
       - name: cloudsql-instance-credentials
         secret:
@@ -136,6 +139,6 @@ spec:
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
               {{- end }}
             - name: CATALINA_OPTS
-              value: "-Dspring.profiles.active=postgresql"
+              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=log4j2.properties"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
