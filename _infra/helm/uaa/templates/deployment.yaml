@@ -51,8 +51,6 @@ spec:
             - name: cloudsql-instance-credentials
               mountPath: /secrets/cloudsql
               readOnly: true
-            - name: log4j-properties
-              mountPath: log4j2.properties
           env:
           - name: SQL_INSTANCE_NAME
             valueFrom:
@@ -71,6 +69,8 @@ spec:
             - name: uaa-secrets
               mountPath: "/uaa"
               readOnly: true
+            - name: log4j-properties
+              mountPath: /etc/config/log4j2.properties
           ports:
             - name: http-uaa
               containerPort: {{ .Values.container.port }}
