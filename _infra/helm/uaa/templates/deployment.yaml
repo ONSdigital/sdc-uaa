@@ -141,6 +141,6 @@ spec:
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
               {{- end }}
             - name: CATALINA_OPTS
-              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=log4j2.properties"
+              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:log4j2.properties"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
