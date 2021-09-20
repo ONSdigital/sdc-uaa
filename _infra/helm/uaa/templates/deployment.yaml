@@ -71,6 +71,7 @@ spec:
               readOnly: true
             - name: log4j2-properties
               mountPath: log4j2.properties
+              subPath: log4j2.properties
           ports:
             - name: http-uaa
               containerPort: {{ .Values.container.port }}
