@@ -10,17 +10,11 @@ data:
     dest = err
     name = UaaLog
 
-    property.log_pattern=%d{HH:mm:ss.SSS} %msg%n
-
     appender.uaaDefaultAppender.type = Console
     appender.uaaDefaultAppender.name = UaaDefaultAppender
-    appender.uaaDefaultAppender.layout.type = PatternLayout
-    appender.uaaDefaultAppender.layout.pattern = [UAA] ${log_pattern}
 
     appender.uaaAuditAppender.type = Console
     appender.uaaAuditAppender.name = UaaAuditAppender
-    appender.uaaAuditAppender.layout.type = PatternLayout
-    appender.uaaAuditAppender.layout.pattern = [UAA_AUDIT] ${log_pattern}
 
     rootLogger.level = info
     rootLogger.appenderRef.uaaDefaultAppender.ref = UaaDefaultAppender
