@@ -24,9 +24,9 @@ spec:
         secret:
           secretName: uaa-secret
           defaultMode: 0444
-      - name: log4j2-propeties
+      - name: log4j2-properties
         configMap:
-          name: log4j2-propeties
+          name: log4j2-properties
       {{- if .Values.database.sqlProxyEnabled }}
       - name: cloudsql-instance-credentials
         secret:
