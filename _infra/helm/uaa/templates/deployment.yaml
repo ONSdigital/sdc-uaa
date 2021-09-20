@@ -24,7 +24,7 @@ spec:
         secret:
           secretName: uaa-secret
           defaultMode: 0444
-      - name: log4j2
+      - name: log4j2-propeties
         configMap:
           name: log4j2-propeties
       {{- if .Values.database.sqlProxyEnabled }}
