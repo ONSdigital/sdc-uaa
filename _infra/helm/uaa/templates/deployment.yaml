@@ -53,7 +53,12 @@ spec:
               mountPath: "/uaa"
               readOnly: true
             - name: log4j2-properties
-              mountPath: /etc/config
+              mountPath: /etc/config/log4j2.properties
+              subPath: log4j2.properties
+            - name: encryption-keys-file
+              mountPath: /etc/secrets/encryption_keys.yml
+              subPath: encryption_keys.yml
+              readOnly: true
           ports:
             - name: http-uaa
               containerPort: {{ .Values.container.port }}
@@ -124,7 +129,7 @@ spec:
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
               {{- end }}
             - name: JAVA_OPTS
-              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:log4j2.properties"
+              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:/etc/config/log4j2.properties"
             - name: SECRETS_DIR
               value: /uaa
           resources:
@@ -137,6 +142,10 @@ spec:
       - name: log4j2-properties
         configMap:
           name: log4j2-properties
+      - name: encryption-keys-file
+        secret:
+          optional: false
+          secretName: encryption-keys
       {{- if .Values.database.sqlProxyEnabled }}
       - name: cloudsql-instance-credentials
         secret:
