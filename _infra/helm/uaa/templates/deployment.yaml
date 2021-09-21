@@ -19,23 +19,6 @@ spec:
         app: {{ .Chart.Name }}
         env: {{ .Values.env }}
     spec:
-      volumes:
-      - name: uaa-secrets
-        secret:
-          secretName: uaa-secret
-          defaultMode: 0444
-      - name: log4j2-properties
-        configMap:
-          name: log4j2-properties
-      {{- if .Values.database.sqlProxyEnabled }}
-      - name: cloudsql-instance-credentials
-        secret:
-          secretName: cloudsql-proxy-credentials
-          defaultMode: 0444
-          items:
-          - key: "credentials.json"
-            path: "credentials.json"
-      {{- end }}
       containers:
         {{- if .Values.database.sqlProxyEnabled }}
         - name: cloudsql-proxy
@@ -70,8 +53,7 @@ spec:
               mountPath: "/uaa"
               readOnly: true
             - name: log4j2-properties
-              mountPath: log4j2.properties
-              subPath: log4j2.properties
+              mountPath: /etc/config
           ports:
             - name: http-uaa
               containerPort: {{ .Values.container.port }}
@@ -141,7 +123,26 @@ spec:
               {{- else }}
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
               {{- end }}
-            - name: CATALINA_OPTS
+            - name: JAVA_OPTS
               value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:log4j2.properties"
+            - name: SECRETS_DIR
+              value: /uaa
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: uaa-secrets
+        secret:
+          secretName: uaa-secret
+          defaultMode: 0444
+      - name: log4j2-properties
+        configMap:
+          name: log4j2-properties
+      {{- if .Values.database.sqlProxyEnabled }}
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-proxy-credentials
+          defaultMode: 0444
+          items:
+          - key: "credentials.json"
+            path: "credentials.json"
+      {{- end }}
