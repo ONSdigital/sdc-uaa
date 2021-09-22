@@ -47,7 +47,7 @@ spec:
                 key: db-port
         {{- end }}
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.uaaImage.name }}:{{ .Values.uaaImage.version }}"
+          image: "{{ .Values.image.name }}:{{ .Values.image.version }}"
           volumeMounts:
             - name: uaa-secrets
               mountPath: "/uaa"
