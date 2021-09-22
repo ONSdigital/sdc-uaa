@@ -19,20 +19,6 @@ spec:
         app: {{ .Chart.Name }}
         env: {{ .Values.env }}
     spec:
-      volumes:
-      - name: uaa-secrets
-        secret:
-          secretName: uaa-secret
-          defaultMode: 0444
-      {{- if .Values.database.sqlProxyEnabled }}
-      - name: cloudsql-instance-credentials
-        secret:
-          secretName: cloudsql-proxy-credentials
-          defaultMode: 0444
-          items:
-          - key: "credentials.json"
-            path: "credentials.json"
-      {{- end }}
       containers:
         {{- if .Values.database.sqlProxyEnabled }}
         - name: cloudsql-proxy
@@ -61,22 +47,21 @@ spec:
                 key: db-port
         {{- end }}
         - name: {{ .Chart.Name }}
-          {{- if eq .Values.image.tag "latest"}}
-          image: "{{ .Values.image.name}}/{{ .Chart.Name }}:{{ .Chart.AppVersion }}"
-          {{- else}}
-          image: "{{ .Values.image.devRepo }}/{{ .Chart.Name }}:{{ .Values.image.tag }}"
-          {{- end}}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ .Values.image.name }}
           volumeMounts:
             - name: uaa-secrets
               mountPath: "/uaa"
               readOnly: true
+            - name: log4j2-properties
+              mountPath: /etc/config/log4j2.properties
+              subPath: log4j2.properties
           ports:
-            - name: http-server
+            - name: http-uaa
               containerPort: {{ .Values.container.port }}
+              protocol: TCP
           readinessProbe:
             httpGet:
-              path: /info
+              path: /healthz
               port: {{ .Values.container.port }}
             periodSeconds: 5
             failureThreshold: 3
@@ -84,7 +69,7 @@ spec:
             timeoutSeconds: 5
           livenessProbe:
             httpGet:
-              path: /info
+              path: /healthz
               port: {{ .Values.container.port }}
             initialDelaySeconds: 300
             periodSeconds: 20
@@ -139,7 +124,26 @@ spec:
               {{- else }}
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
               {{- end }}
-            - name: CATALINA_OPTS
-              value: "-Dspring.profiles.active=postgresql"
+            - name: JAVA_OPTS
+              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:/etc/config/log4j2.properties"
+            - name: SECRETS_DIR
+              value: /uaa
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: uaa-secrets
+        secret:
+          secretName: uaa-secret
+          defaultMode: 0444
+      - name: log4j2-properties
+        configMap:
+          name: log4j2-properties
+      {{- if .Values.database.sqlProxyEnabled }}
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-proxy-credentials
+          defaultMode: 0444
+          items:
+          - key: "credentials.json"
+            path: "credentials.json"
+      {{- end }}
