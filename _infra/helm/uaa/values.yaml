@@ -7,8 +7,8 @@ rollingUpdate:
   maxUnavailable: 1
 
 image:
-  name: "cloudfoundry/uaa@sha256:4c7f2d881bc9c4a075232064e906d032c9512b03b87c06cbb2501560cb2f14e4"
-  version: "74.12.0"
+  name: "cloudfoundry/uaa"
+  version: "75.7.0"
 
 database:
   managedPostgres: false
