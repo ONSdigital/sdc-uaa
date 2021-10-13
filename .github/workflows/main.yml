@@ -5,6 +5,9 @@ on:
     types: [created]
 
 env:
+  SPINNAKER_TOPIC: ${{ secrets.SPINNAKER_TOPIC }}
+  ARTIFACT_BUCKET: ${{ secrets.ARTIFACT_BUCKET }}
+  HOST: ${{ secrets.GOOGLE_PROJECT_ID }}
   SERVICE: uaa
 
 jobs:

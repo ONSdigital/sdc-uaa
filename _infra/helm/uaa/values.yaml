@@ -7,10 +7,8 @@ rollingUpdate:
   maxUnavailable: 1
 
 image:
-  name: eu.gcr.io/ons-rasrmbs-management
-  devRepo: eu.gcr.io/ons-rasrmbs-management
-  pullPolicy: Always
-  tag: latest
+  name: "cloudfoundry/uaa"
+  version: "75.7.0"
 
 database:
   managedPostgres: false
@@ -31,4 +29,3 @@ resources:
 
 gcp:
   project: ras-rm-sandbox
-  
