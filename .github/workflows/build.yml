@@ -31,7 +31,10 @@ jobs:
         with:
           fetch-depth: '0'
           token: ${{ secrets.BOT_TOKEN }}
-
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          version: '270.0.0'
+          service_account_key: ${{ secrets.GCR_KEY }}
       - name: template helm
         run: |
           helm template $CHART_DIRECTORY
