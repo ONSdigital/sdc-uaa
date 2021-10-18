@@ -119,7 +119,6 @@ jobs:
           echo ::set-output name=version::$(grep -E "appVersion:\s+" $CHART_DIRECTORY/Chart.yaml | cut -d" " -f2 | sed -r 's/"//g')
 
       - name: Publish Charts
-      - name: Publish Charts
         if: github.ref == 'refs/heads/main'
         run: |
           gsutil cp $IMAGE-*.tgz gs://$ARTIFACT_BUCKET/$IMAGE/
