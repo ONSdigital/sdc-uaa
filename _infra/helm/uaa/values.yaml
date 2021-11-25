@@ -24,12 +24,19 @@ service:
   port: 80
 
 resources:
-  requests:
-    cpu: "400m"
-    memory: "1000Mi"
-  limits:
-    cpu: "1000m"
-    memory: "1200Mi"
-
+  application:
+    requests:
+      cpu: "400m"
+      memory: "1000Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1200Mi"
+  proxy:
+    requests:
+      memory: "25Mi"
+      cpu: "10m"
+    limits:
+      memory: "64Mi"
+      cpu: "100m"
 gcp:
   project: ras-rm-sandbox
