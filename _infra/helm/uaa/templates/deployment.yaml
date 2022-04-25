@@ -63,7 +63,7 @@ spec:
               protocol: TCP
           readinessProbe:
             httpGet:
-              path: /healthz
+              path: /info
               port: {{ .Values.container.port }}
             initialDelaySeconds: 1
             periodSeconds: 20
@@ -72,7 +72,7 @@ spec:
             timeoutSeconds: 5
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /info
               port: {{ .Values.container.port }}
             initialDelaySeconds: 1
             periodSeconds: 20
