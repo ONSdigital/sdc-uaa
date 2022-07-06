@@ -32,10 +32,10 @@ jobs:
           fetch-depth: '0'
           token: ${{ secrets.BOT_TOKEN }}
       - name: Authenticate with Google Cloud
-        id: 'auth'
-        uses: 'google-github-actions/auth@v0'
+        id: auth
+        uses: google-github-actions/auth@v0
         with:
-          credentials_json: '${{ secrets.GCR_KEY }}'
+          credentials_json: ${{ secrets.GCR_KEY }}
       - name: Setup Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
       - name: template helm
