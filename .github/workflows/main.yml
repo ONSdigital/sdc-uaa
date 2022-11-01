@@ -48,10 +48,18 @@ jobs:
           helm dep up $CHART_DIRECTORY
           helm package $CHART_DIRECTORY
 
+      - name: pr number
+        if: github.ref != 'refs/heads/main'
+        id: tag
+        run: |
+          PR=$(echo "$GITHUB_REF" | awk -F / '{print $3}')
+          echo "$PR"
+          echo ::set-output name=pr_number::pr-"$PR"
+
       - name: Publish dev Chart
         if: github.ref != 'refs/heads/main'
         run: |
-          mv $IMAGE-${{ env.HELM_VERSION }}.tgz $IMAGE-latest.tgz
+          mv $IMAGE-${{ env.HELM_VERSION }}.tgz $IMAGE-${{ steps.tag.outputs.pr_number }}.tgz
           gsutil cp $IMAGE-*.tgz gs://$ARTIFACT_BUCKET/$IMAGE/
 
       - name: Set current tag
@@ -124,6 +132,7 @@ jobs:
       - name: Publish Charts
         if: github.ref == 'refs/heads/main'
         run: |
+          cp $IMAGE-${{ env.HELM_VERSION }}.tgz $IMAGE-latest.tgz
           gsutil cp $IMAGE-*.tgz gs://$ARTIFACT_BUCKET/$IMAGE/
 
       - uses: actions/create-release@v1
