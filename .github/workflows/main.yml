@@ -37,7 +37,7 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCR_KEY }}
       - name: Setup Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
       - name: template helm
         run: |
           helm template $CHART_DIRECTORY
