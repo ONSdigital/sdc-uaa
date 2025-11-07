@@ -8,7 +8,7 @@ rollingUpdate:
 
 image:
   name: "cloudfoundry/uaa"
-  version: "77.21.0"
+  version: "76.29.0"
 
 database:
   managedPostgres: false
