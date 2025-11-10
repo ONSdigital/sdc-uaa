@@ -7,7 +7,7 @@ rollingUpdate:
   maxUnavailable: 1
 
 image:
-  name: "cfidentity/uaa"
+  name: "cloudfoundry/uaa"
   version: "76.19.0"
 
 database:
