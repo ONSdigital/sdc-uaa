@@ -7,8 +7,9 @@ rollingUpdate:
   maxUnavailable: 1
 
 image:
-  name: "cfidentity/uaa"
-  version: "v78.4.0"
+  name: europe-west2-docker.pkg.dev/ons-ci-rmrasbs/images
+  pullPolicy: Always
+  version: latest
 
 database:
   managedPostgres: false
