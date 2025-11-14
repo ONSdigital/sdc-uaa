@@ -40,4 +40,4 @@ resources:
       memory: "64Mi"
       cpu: "100m"
 gcp:
-  project: ras-rm-dev
+  project: ras-rm-sandbox
