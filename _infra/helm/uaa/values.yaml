@@ -9,7 +9,7 @@ rollingUpdate:
 image:
   name: europe-west2-docker.pkg.dev/ons-ci-rmrasbs/images/uaa
   pullPolicy: Always
-  version: latest
+  version: v78.4.0
 
 database:
   managedPostgres: false
