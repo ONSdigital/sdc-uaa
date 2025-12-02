@@ -7,8 +7,9 @@ rollingUpdate:
   maxUnavailable: 1
 
 image:
-  name: "cloudfoundry/uaa"
-  version: "76.18.0"
+  name: europe-west2-docker.pkg.dev/ons-ci-rmrasbs/images/uaa
+  pullPolicy: Always
+  version: v78.4.0
 
 database:
   managedPostgres: false
