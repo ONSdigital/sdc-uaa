@@ -7,7 +7,7 @@ rollingUpdate:
   maxUnavailable: 1
 
 image:
-  name: "cloudfoundry/uaa"
+  name: "europe-west2-docker.pkg.dev/ons-ci-rmrasbs/images/uaa"
   version: "76.18.0"
 
 database:
