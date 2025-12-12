@@ -130,7 +130,7 @@ spec:
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
               {{- end }}
             - name: JAVA_OPTS
-              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:/etc/config/log4j2.properties -Dlogging.config=/etc/config/log4j2.properties"
+              value: "-Dspring.profiles.active=postgresql -Dlog4j.configurationFile=file:/etc/config/log4j2.properties -Dlogging.config=/etc/config/log4j2.properties -Dflyway.skipExecutingMigrations=true"
             - name: SECRETS_DIR
               value: /uaa
           resources:
