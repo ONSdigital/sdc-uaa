@@ -5,7 +5,7 @@ This project contains a Helm chart for deploying the Cloudfoundry UAA https://gi
 # Upgrading/Downgrading
 
 ## Upgrading and Downgrading - pre-deployment steps in preprod and prod
-When either upgrading or downgrading, take a backup of the UAA DB in both pre-prod and prod. It is important to take a
+When upgrading, take a backup of the UAA DB in both pre-prod and prod. Keep these safe and secure. It is important to take a
 backup, in case of a deployment failure or when downgrading. UAA uses 'flyway' to upgrade the postgres DB. It's control
 is currently outside our control. When it carries out a migration to a new version, it may add and/or delete columns,
 datatypes and tables. This can cause flyway errors when a deployment is downgraded. So it is important to take the UAA
@@ -20,7 +20,7 @@ pipeline will deploy the new version.
 Once the deployment has been successful, restart ROPS.
 
 ## Downgrading
-Stop SDC UAA in the environment and import the backup of the UAA DB. Once done, update the Chart.yaml to the previous,
+Stop SDC UAA in the environment and import the backup of the UAA DB taken from the first step. Once done, update the Chart.yaml to the previous,
 required version and merge the PR. The Spinnaker pipeline will deploy the required version. Once the deployment has been 
 successful, restart ROPS. 
 
