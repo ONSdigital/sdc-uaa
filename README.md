@@ -6,16 +6,16 @@ This project contains a Helm chart for deploying the Cloudfoundry UAA https://gi
 
 ## Upgrading and Downgrading - pre-deployment steps in preprod and prod
 When upgrading, take a backup of the UAA DB in both pre-prod and prod. Keep these safe and secure. It is important to take a
-backup, in case of a deployment failure or when downgrading. UAA uses 'flyway' to upgrade the postgres DB. It's control
+backup, in case of a deployment failure or when downgrading. UAA uses 'flyway' to upgrade the Postgres DB. Its control
 is currently outside our control. When it carries out a migration to a new version, it may add and/or delete columns,
-datatypes and tables. This can cause flyway errors when a deployment is downgraded. So it is important to take the UAA
-DB backup before doing anthing.
+datatypes and tables. This can cause Flyway errors when a deployment is downgraded. So it is important to take the UAA
+DB backup before doing anything.
 
 ## Upgrading
-To upgrade to a new version of the UAA, update both the Chart.yaml and the Concourse pipeline 'build-images' pipeline 
-yaml: https://github.com/ONSdigital/ras-rm-concourse/blob/main/build-images/variables.yaml. Fly the pipeline first and 
-check the new image exist in our GAR repository. Once the new image has been added, merge the PR and the Spinnaker 
-pipeline will deploy the new version.
+To upgrade to a new version of the UAA, update both the `Chart.yaml` and version in the `values.yaml`, and the Concourse pipeline 
+'build-images' pipeline [`variables.yaml`](https://github.com/ONSdigital/ras-rm-concourse/blob/main/build-images/variables.yaml). Fly 
+the pipeline first and check the new image exist in our GAR repository. Once the new image has been added, 
+merge the PR and the Spinnaker pipeline will deploy the new version.
 
 Once the deployment has been successful, restart ROPS.
 
